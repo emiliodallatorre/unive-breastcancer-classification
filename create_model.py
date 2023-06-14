@@ -42,7 +42,7 @@ def create_model(save_path: str) -> str:
     print()
 
     x_train, x_test, y_train, y_test = split_data(full_x, full_y)
-    model = RandomForestClassifier(n_estimators=100, random_state=42)  # Initialize the Random Forest classifier
+    model: RandomForestClassifier = RandomForestClassifier(n_estimators=100, random_state=42)  # Initialize the Random Forest classifier
     model.fit(x_train, y_train)  # Train the model
 
     y_pred = model.predict(x_test)  # Predict the test data
