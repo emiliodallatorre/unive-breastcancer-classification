@@ -24,8 +24,22 @@ def split_data(x: DataFrame, y: DataFrame) -> (DataFrame, DataFrame, DataFrame, 
 def create_model(save_path: str) -> str:
     data: DataFrame = load_data("data/data.csv")
 
-    full_x = data.drop(['ID', 'Diagnosis'], axis=1)
+    # We drop all the columns and make the diagnosis over radius, perimeter and area
+    full_x = data.drop(['ID', 'Diagnosis', 'Texture', 'Smoothness', 'Compactness', 'Concavity', 'Concave Points',
+                        'Symmetry', 'Fractal Dimension', 'Radius SE', 'Texture SE', 'Perimeter SE', 'Area SE',
+                        'Smoothness SE', 'Compactness SE', 'Concavity SE', 'Concave Points SE', 'Symmetry SE',
+                        'Fractal Dimension SE', 'Radius W', 'Texture W', 'Perimeter W', 'Area W', 'Smoothness W',
+                        'Compactness W', 'Concavity W', 'Concave Points W', 'Symmetry W', 'Fractal Dimension W'],
+                       axis=1)
     full_y = data['Diagnosis']
+
+    print("Data for the regression:")
+    full_x.info()
+
+    print()
+    for col in full_x.columns:
+        print(col, "max:", full_x[col].max(), "min:", full_x[col].min())
+    print()
 
     x_train, x_test, y_train, y_test = split_data(full_x, full_y)
     model = RandomForestClassifier(n_estimators=100, random_state=42)  # Initialize the Random Forest classifier
