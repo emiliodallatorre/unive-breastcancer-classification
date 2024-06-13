@@ -1,4 +1,6 @@
-# Breast Cancer Classification with FastAPI
+# Breast Cancer Classification API
+
+![Cover Image](cover.jpg)
 
 This project demonstrates how to deploy a pre-trained machine learning model as a web service using FastAPI. The machine
 learning model used in this project is a `RandomForestClassifier`, trained on a Breast Cancer classification dataset.
